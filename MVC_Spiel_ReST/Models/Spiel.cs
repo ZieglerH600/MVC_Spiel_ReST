@@ -2,6 +2,7 @@
 {
     public class Spiel
     {
+        public int SID { get; set; }
         public string Name { get; set; }
         public string Date { get; set; }
         public int MinSpieler { get; set; }
