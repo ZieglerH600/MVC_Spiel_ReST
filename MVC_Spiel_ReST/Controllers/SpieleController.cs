@@ -15,7 +15,7 @@ namespace MVC_Spiel_ReST.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<SpieleController>/5
+        // GET api/<SpieleController>/4
         [HttpGet("{id}")]
         public string Get(int id)
         {
