@@ -2,7 +2,7 @@
 {
     public class Spiel
     {
-        public int SID { get; set; }
+        public int SIP { get; set; }
         public int TID { get; set; }
         public int PID { get; set; }
         public string Name { get; set; }

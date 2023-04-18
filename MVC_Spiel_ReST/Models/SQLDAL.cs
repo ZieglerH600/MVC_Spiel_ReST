@@ -13,7 +13,9 @@ namespace MVC_Spiel_ReST.Models
         }
         public bool DeleteGameByID(int id)
         {
-            throw new NotImplementedException();
+            string SelectStr = $@"Delete * from Spiel where SIP=@SIP";
+            int affected = Conn.Execute(SelectStr, new { SIP = id });
+            if (affected > 0) { return true; } else { return false; }
         }
 
         public List<Spiel> GetAllGames()
@@ -38,12 +40,60 @@ namespace MVC_Spiel_ReST.Models
 
         public int InsertGame(Spiel Game)
         {
-            throw new NotImplementedException();
+            string SelectStr = $@"Insert into Spiel 
+            (TID,
+            PID,
+            Name,
+            Erscheinungsjahr,
+            SpielerMin,
+            SpielerMax,
+            Rating) 
+            Values (@TID,
+            @PID,
+            @Name,
+            @Erscheinungsjahr,
+            @SpielerMin,
+            @SpielerMax,
+            @Rating);
+            select last_insert-rowid()";
+            var anonym = new
+            {
+                TID = Game.TID,
+                PID = Game.PID,
+                Name = Game.Name,
+                Erscheinungsjahr = Game.Date,
+                SpielerMin = Game.SpielerMin,
+                SpielerMax = Game.SpielerMax,
+                Rating = Game.Rating
+            };
+            int PK = Conn.ExecuteScalar<int>(SelectStr, anonym);
+            return PK;
         }
 
-        public bool UpdateGame(Spiel Game)
+        public async Task<bool> UpdateGame(Spiel Game)
         {
-            throw new NotImplementedException();
+            string SelectStr = $@"Update Spiel SET
+            TID=@TID,
+            PID=@PID,
+            Name=@Name,
+            Erscheinungsjahr=@Erscheinungsjahr,
+            SpielerMin=@SpielerMin,
+            SpielerMax=@SpielerMax,
+            Rating=@Rating
+            where SIP=@SIP;";
+            var anonym = new
+            {
+                TID = Game.TID,
+                PID = Game.PID,
+                Name = Game.Name,
+                Erscheinungsjahr  = Game.Date,
+                SpielerMin = Game.SpielerMin,
+                SpielerMax = Game.SpielerMax,
+                Rating = Game.Rating,
+                SIP = Game.SIP
+            };
+            int geklappt = await Conn.ExecuteAsync(SelectStr, anonym);
+            if (geklappt > 0) { return true; } else { return false; }
         }
     }
 }
