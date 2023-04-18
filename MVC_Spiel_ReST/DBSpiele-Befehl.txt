@@ -51,4 +51,5 @@ INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [Spi
 INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (4, 3, 5, N'DOOM slayers Collection', N'2020', 1, NULL, 4.5)
 INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (5, 5, 5, N'Fallout 76- Tricentennial Edition', N'2018', 1, NULL, 3)
 INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (6, 2, 8, N'Company of Heroes 3', N'2023', NULL, NULL, 4)
+INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (7, 7, 6, N'Monster Hunter World', N'2018', NULL, NULL, 4.5)
 SET IDENTITY_INSERT [dbo].[Spiel] OFF
