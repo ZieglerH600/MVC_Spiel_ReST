@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVC_Spiel_ReST.Models;
+using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,19 +10,30 @@ namespace MVC_Spiel_ReST.Controllers
     [ApiController]
     public class SpieleController : ControllerBase
     {
-        // GET: api/<SpieleController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        readonly IDaten dataAccess;      
+        public SpieleController(IConfiguration configuration)
         {
-            //Kommentar Test
-            return new string[] { "value1", "value2" };
+            dataAccess = new SQLDAL(configuration.GetConnectionString("SQLConnection"));
+        }
+        // GET: api/<SpieleController>
+        [Route("/api/AllGames")]
+        [HttpGet]
+        public IActionResult AllGames()
+        {
+            List<Spiel> AlleSpiele = new List<Spiel>();
+            AlleSpiele = dataAccess.GetAllGames();
+           
+            return new JsonResult(AlleSpiele);
         }
 
         // GET api/<SpieleController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [Route("/api/Games?{SIP}")]
+        [HttpGet("{SIP}")]
+        public IActionResult GameByID(int SIP)
         {
-            return "value";
+            Spiel spiel = dataAccess.GetGameByID(SIP);           
+
+            return new JsonResult(spiel);
         }
 
         // POST api/<SpieleController>
