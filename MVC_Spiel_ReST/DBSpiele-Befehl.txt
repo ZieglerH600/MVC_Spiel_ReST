@@ -44,3 +44,12 @@ values
 --------------------------------------------------------
 
 Insert into Spiel
+SET IDENTITY_INSERT [dbo].[Spiel] ON
+INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (1, 3, 1, N'StarCraft II: Legacy of the Void', N'2015', NULL, NULL, 4.5)
+INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (2, 5, 2, N'Star Wars Jedi: Fallen Order', N'2019', NULL, NULL, 4.5)
+INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (3, 2, 2, N'Command & Conquer Remastered Collection', N'2020', 1, NULL, 4)
+INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (4, 3, 5, N'DOOM slayers Collection', N'2020', 1, NULL, 4.5)
+INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (5, 5, 5, N'Fallout 76- Tricentennial Edition', N'2018', 1, NULL, 3)
+INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (6, 2, 8, N'Company of Heroes 3', N'2023', NULL, NULL, 4)
+INSERT INTO [dbo].[Spiel] ([SIP], [TID], [PID], [Name], [Erscheinungsjahr], [SpielerMin], [SpielerMax], [Rating]) VALUES (7, 7, 6, N'Monster Hunter World', N'2018', NULL, NULL, 4.5)
+SET IDENTITY_INSERT [dbo].[Spiel] OFF
