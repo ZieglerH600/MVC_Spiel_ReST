@@ -1,0 +1,43 @@
+﻿Create Table Typ (
+TID int Primary Key Identity(1,1),
+Name Varchar (50)
+);
+
+Create Table Publisher (
+PID int primary Key Identity (1,1),
+Bezeichnung varchar(50)
+);
+
+Create Table Spiel (
+SIP int Primary Key Identity(1,1),
+TID INT,
+PID int,
+Name VARCHAR(50),
+Erscheinungsjahr Date,
+SpielerMin int,
+SpielerMax int,
+Rating real,
+foreign key (TID) References Typ(TID),
+foreign key (PID) References Publisher(PID)
+);
+
+Insert into Publisher (Bezeichnung)
+values
+('Activision Blizzard'),
+('Sony'),
+('Microsoft / Xbox Game Studios'),
+('Humble Games'),
+('Bethesda Softworks'),
+('Capcom'),
+('Bandai Namco'),
+('Sega');
+
+Insert into Typ (Name)
+values
+('Sandbox'),
+('Real-time-strategy'),
+('Shooter'),
+('MOBA'),
+('Role-Playing'),
+('Puzzle and party games'),
+('Action-adventure');
