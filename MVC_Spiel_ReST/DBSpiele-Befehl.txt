@@ -13,7 +13,7 @@ SIP int Primary Key Identity(1,1),
 TID INT,
 PID int,
 Name VARCHAR(50),
-Erscheinungsjahr Date,
+Erscheinungsjahr NVARCHAR(4),
 SpielerMin int,
 SpielerMax int,
 Rating real,
@@ -41,3 +41,6 @@ values
 ('Role-Playing'),
 ('Puzzle and party games'),
 ('Action-adventure');
+--------------------------------------------------------
+
+Insert into Spiel
