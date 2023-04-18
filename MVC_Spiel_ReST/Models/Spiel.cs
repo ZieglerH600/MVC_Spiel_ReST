@@ -1,11 +1,15 @@
-﻿namespace MVC_Spiel_ReST.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MVC_Spiel_ReST.Models
 {
     public class Spiel
     {
-        public int SID { get; set; }
+        
+        public int SIP { get; set; }
         public int TID { get; set; }
         public int PID { get; set; }
         public string Name { get; set; }
+        [Display(Name="Erscheinungsjahr")]
         public string Date { get; set; }
         public int SpielerMin { get; set; }
         public int SpielerMax { get; set; }
