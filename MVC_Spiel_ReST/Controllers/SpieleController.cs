@@ -12,6 +12,7 @@ namespace MVC_Spiel_ReST.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            //Kommentar Test
             return new string[] { "value1", "value2" };
         }
 
