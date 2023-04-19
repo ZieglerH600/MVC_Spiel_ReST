@@ -15,7 +15,7 @@ namespace MVC_Spiel_ReST.Controllers
         {
             dataAccess = new SQLDAL(configuration.GetConnectionString("SQLConnection"));
         }
-        // GET: api/<SpieleController>
+        //Alle Spiele abrufen als Liste und als JsonResult an den Client geschickt
         [Route("/api/AllGames")]
         [HttpGet]
         public IActionResult AllGames()
@@ -60,7 +60,7 @@ namespace MVC_Spiel_ReST.Controllers
             return new JsonResult(spiel);
         }
 
-        // DELETE api/<SpieleController>/5
+        // DELETE api/<SpieleController>/5        
         [Route("/api/DeleteGame/{SIP")]
         [HttpDelete("{id}")]
         public IActionResult DeleteGame(int SIP)
@@ -69,5 +69,6 @@ namespace MVC_Spiel_ReST.Controllers
             return new JsonResult(true);
 
         }
+
     }
 }
