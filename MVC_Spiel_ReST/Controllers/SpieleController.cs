@@ -10,7 +10,7 @@ namespace MVC_Spiel_ReST.Controllers
     [ApiController]
     public class SpieleController : ControllerBase
     {
-        readonly IDaten dataAccess;      
+        readonly IDaten dataAccess;
         public SpieleController(IConfiguration configuration)
         {
             dataAccess = new SQLDAL(configuration.GetConnectionString("SQLConnection"));
@@ -22,7 +22,7 @@ namespace MVC_Spiel_ReST.Controllers
         {
             List<Spiel> AlleSpiele = new List<Spiel>();
             AlleSpiele = dataAccess.GetAllGames();
-           
+
             return new JsonResult(AlleSpiele);
         }
 
@@ -31,7 +31,7 @@ namespace MVC_Spiel_ReST.Controllers
         [HttpGet("{SIP}")]
         public IActionResult GameByID(int SIP)
         {
-            Spiel spiel = dataAccess.GetGameByID(SIP);           
+            Spiel spiel = dataAccess.GetGameByID(SIP);
 
             return new JsonResult(spiel);
         }
