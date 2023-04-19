@@ -35,11 +35,17 @@ namespace MVC_Spiel_ReST.Controllers
 
             return new JsonResult(spiel);
         }
-
+        
         // POST api/<SpieleController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult InsertGame([FromBody] string value)
         {
+            Spiel spiel = System.Text.Json.JsonSerializer.Deserialize<Spiel>(value);
+
+            dataAccess.InsertGame(spiel);
+
+            return new JsonResult(spiel);
+
         }
 
         // PUT api/<SpieleController>/5
