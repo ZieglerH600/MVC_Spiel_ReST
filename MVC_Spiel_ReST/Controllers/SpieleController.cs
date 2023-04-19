@@ -65,8 +65,9 @@ namespace MVC_Spiel_ReST.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteGame(int SIP)
         {
-            dataAccess.DeleteGameByID(SIP);
-            return new JsonResult(true);
+            bool geklappt = dataAccess.DeleteGameByID(SIP);
+            
+            return new JsonResult(geklappt);
 
         }
 
