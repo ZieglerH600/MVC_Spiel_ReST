@@ -27,7 +27,7 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         // GET api/<SpieleController>/5
-        [Route("/api/Games/{SIP}")]
+        [Route("/api/GameByID/{SIP}")]
         [HttpGet("{SIP}")]
         public IActionResult GameByID(int SIP)
         {
@@ -35,8 +35,9 @@ namespace MVC_Spiel_ReST.Controllers
 
             return new JsonResult(spiel);
         }
-        
+
         // POST api/<SpieleController>
+        [Route("/api/InsertGame")]
         [HttpPost]
         public IActionResult InsertGame([FromBody] string value)
         {
@@ -49,15 +50,24 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         // PUT api/<SpieleController>/5
+        [Route("/api/UpdateGame")]
         [HttpPut("{id}")]
-        public IActionResult UpdateGame(int id, [FromBody] string value)
+        public IActionResult UpdateGame(int SIP, [FromBody] string value)
         {
+            Spiel spiel = System.Text.Json.JsonSerializer.Deserialize<Spiel>(value);
+            dataAccess.UpdateGame(spiel);
+
+            return new JsonResult(spiel);
         }
 
         // DELETE api/<SpieleController>/5
+        [Route("/api/DeleteGame/{SIP")]
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult DeleteGame(int SIP)
         {
+            dataAccess.DeleteGameByID(SIP);
+            return new JsonResult(true);
+
         }
     }
 }
