@@ -27,7 +27,7 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         // GET api/<SpieleController>/5
-        [Route("/api/Games?{SIP}")]
+        [Route("/api/Games/{SIP}")]
         [HttpGet("{SIP}")]
         public IActionResult GameByID(int SIP)
         {
