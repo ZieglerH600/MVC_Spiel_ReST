@@ -95,5 +95,17 @@ namespace MVC_Spiel_ReST.Models
             int geklappt = await Conn.ExecuteAsync(SelectStr, anonym);
             if (geklappt > 0) { return true; } else { return false; }
         }
+        public List<Publisher> GetAllPublisher()
+        {
+            string SelectStr = $@"Select *
+                                from Publisher";
+            return Conn.Query<Publisher>(SelectStr).ToList();
+        }
+        public List<Typ> GetAllTyp()
+        {
+            string SelectStr = $@"Select *
+                                from Typ";
+            return Conn.Query<Typ>(SelectStr).ToList();
+        }
     }
 }
