@@ -97,14 +97,12 @@ namespace MVC_Spiel_ReST.Models
         }
         public List<Publisher> GetAllPublisher()
         {
-            string SelectStr = $@"Select *
-                                from Publisher";
+            string SelectStr = $@"Select * from Publisher";
             return Conn.Query<Publisher>(SelectStr).ToList();
         }
         public List<Typ> GetAllTyp()
         {
-            string SelectStr = $@"Select *
-                                from Typ";
+            string SelectStr = $@"Select * from Typ";
             return Conn.Query<Typ>(SelectStr).ToList();
         }
     }
