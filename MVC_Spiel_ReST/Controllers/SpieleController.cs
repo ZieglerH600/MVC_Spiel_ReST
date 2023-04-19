@@ -50,7 +50,7 @@ namespace MVC_Spiel_ReST.Controllers
 
         // PUT api/<SpieleController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult UpdateGame(int id, [FromBody] string value)
         {
         }
 
