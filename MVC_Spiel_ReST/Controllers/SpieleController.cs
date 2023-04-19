@@ -25,6 +25,25 @@ namespace MVC_Spiel_ReST.Controllers
 
             return new JsonResult(AlleSpiele);
         }
+        [Route("/api/GetAllPublisher")]
+        [HttpGet]
+        public IActionResult GetAllPublisher()
+        {
+            List<Publisher> publishers = new List<Publisher>();
+            publishers = dataAccess.GetAllPublisher();
+            
+            return new JsonResult(publishers);
+        }
+
+        [Route("/api/GetAllTyp")]
+        [HttpGet]
+        public IActionResult GetAllTyp()
+        {
+            List<Typ> type = new List<Typ>();
+            type = dataAccess.GetAllTyp();
+
+            return new JsonResult(type);
+        }
 
         //Sucht das Spiel mithilfe der ID raus und schickt das Ergebnis als JsonResult an den Client
         [Route("/api/GameByID/{SIP}")]
