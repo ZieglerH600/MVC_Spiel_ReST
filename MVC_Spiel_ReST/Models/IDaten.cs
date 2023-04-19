@@ -6,6 +6,6 @@
         Spiel GetGameByID(int id);
         int InsertGame(Spiel Game);//Gibt die ID zurück
         Task<bool> UpdateGame(Spiel Game);
-        bool DeleteGameByID(int id);
+        Task<bool> DeleteGameByID(int id);
     }
 }
