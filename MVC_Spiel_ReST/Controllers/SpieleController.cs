@@ -26,7 +26,7 @@ namespace MVC_Spiel_ReST.Controllers
             return new JsonResult(AlleSpiele);
         }
 
-        //Sucht das Spiel mithilfe der ID raus
+        //Sucht das Spiel mithilfe der ID raus und schickt das Ergebnis als JsonResult an den Client
         [Route("/api/GameByID/{SIP}")]
         [HttpGet("{SIP}")]
         public IActionResult GameByID(int SIP)
@@ -36,7 +36,7 @@ namespace MVC_Spiel_ReST.Controllers
             return new JsonResult(spiel);
         }
 
-        //
+        //Fügt ein Spiel hinzu und sendet das Ergebnis an den Client
         [Route("/api/InsertGame")]
         [HttpPost]
         public IActionResult InsertGame([FromBody] string value)
@@ -49,7 +49,7 @@ namespace MVC_Spiel_ReST.Controllers
 
         }
 
-        // PUT api/<SpieleController>/5
+        //Ändert die Daten eines Spiels
         [Route("/api/UpdateGame")]
         [HttpPut("{id}")]
         public IActionResult UpdateGame(int SIP, [FromBody] string value)
@@ -60,7 +60,7 @@ namespace MVC_Spiel_ReST.Controllers
             return new JsonResult(spiel);
         }
 
-        // DELETE api/<SpieleController>/5        
+        //Löscht ein Spiel aus der Datenbank vom Client ausgehend       
         [Route("/api/DeleteGame/{SIP}")]
         [HttpDelete("{id}")]
         public IActionResult DeleteGame(int SIP)
