@@ -11,10 +11,10 @@ namespace MVC_Spiel_ReST.Models
 
             Conn = new SqlConnection(Connstr);
         }
-        public bool DeleteGameByID(int id)
+        public async Task<bool> DeleteGameByID(int SIP)
         {
             string SelectStr = $@"Delete * from Spiel where SIP=@SIP";
-            int affected = Conn.Execute(SelectStr, new { SIP = id });
+            int affected = await Conn.ExecuteScalarAsync<int>(SelectStr, new { SIP = SIP });
             if (affected > 0) { return true; } else { return false; }
         }
 

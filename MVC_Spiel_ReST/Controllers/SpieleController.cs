@@ -61,7 +61,7 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         // DELETE api/<SpieleController>/5        
-        [Route("/api/DeleteGame/{SIP")]
+        [Route("/api/DeleteGame/{SIP}")]
         [HttpDelete("{id}")]
         public IActionResult DeleteGame(int SIP)
         {
