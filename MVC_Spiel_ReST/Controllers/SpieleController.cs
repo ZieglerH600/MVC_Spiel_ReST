@@ -10,7 +10,7 @@ namespace MVC_Spiel_ReST.Controllers
     [ApiController]
     public class SpieleController : ControllerBase
     {
-        readonly IDaten dataAccess;      
+        readonly IDaten dataAccess;
         public SpieleController(IConfiguration configuration)
         {
             dataAccess = new SQLDAL(configuration.GetConnectionString("SQLConnection"));
@@ -22,7 +22,7 @@ namespace MVC_Spiel_ReST.Controllers
         {
             List<Spiel> AlleSpiele = new List<Spiel>();
             AlleSpiele = dataAccess.GetAllGames();
-           
+
             return new JsonResult(AlleSpiele);
         }
 
@@ -31,15 +31,21 @@ namespace MVC_Spiel_ReST.Controllers
         [HttpGet("{SIP}")]
         public IActionResult GameByID(int SIP)
         {
-            Spiel spiel = dataAccess.GetGameByID(SIP);           
+            Spiel spiel = dataAccess.GetGameByID(SIP);
 
             return new JsonResult(spiel);
         }
 
         // POST api/<SpieleController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult InsertGame([FromBody] string value)
         {
+            Spiel spiel = System.Text.Json.JsonSerializer.Deserialize<Spiel>(value);
+
+            dataAccess.InsertGame(spiel);
+
+            return new JsonResult(spiel);
+
         }
 
         // PUT api/<SpieleController>/5
