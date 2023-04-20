@@ -61,7 +61,7 @@ namespace MVC_Spiel_ReST.Models
                 TID = Game.TID,
                 PID = Game.PID,
                 Name = Game.Name,
-                Erscheinungsjahr = Game.Date,
+                Erscheinungsjahr = Game.Erscheinungsjahr,
                 SpielerMin = Game.SpielerMin,
                 SpielerMax = Game.SpielerMax,
                 Rating = Game.Rating
@@ -86,7 +86,7 @@ namespace MVC_Spiel_ReST.Models
                 TID = Game.TID,
                 PID = Game.PID,
                 Name = Game.Name,
-                Erscheinungsjahr  = Game.Date,
+                Erscheinungsjahr  = Game.Erscheinungsjahr,
                 SpielerMin = Game.SpielerMin,
                 SpielerMax = Game.SpielerMax,
                 Rating = Game.Rating,
