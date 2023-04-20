@@ -6,8 +6,11 @@ namespace MVC_Spiel_ReST.Models
     {
         
         public int SIP { get; set; }
+        [Required]
         public int TID { get; set; }
+        [Required]
         public int PID { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Erscheinungsjahr { get; set; }
         public int SpielerMin { get; set; }

@@ -55,7 +55,7 @@ namespace MVC_Spiel_ReST.Models
             @SpielerMin,
             @SpielerMax,
             @Rating);
-            select last_insert-rowid()";
+            ";
             var anonym = new
             {
                 TID = Game.TID,
