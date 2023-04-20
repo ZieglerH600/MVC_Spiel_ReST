@@ -2,7 +2,7 @@
 {
     public class Publisher
     {
-        string Bezeichnung { get; set; }
-        int PID { get; set; }
+        public string Bezeichnung { get; set; }
+        public int PID { get; set; }
     }
 }
