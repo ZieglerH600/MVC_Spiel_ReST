@@ -16,7 +16,7 @@ namespace MVC_Spiel_ReST.Models
         public int SpielerMin { get; set; }
         public int SpielerMax { get; set; }
         public double Rating { get; set; }
-        public string SpieleTyp { get; set; }
-        public string SpielPublisher { get; set; }
+        public string? SpieleTyp { get; set; }
+        public string? SpielPublisher { get; set; }
     }
 }
