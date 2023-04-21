@@ -12,7 +12,7 @@ namespace MVC_Spiel_ReST.Models
         public int PID { get; set; }
         [Required]
         public string Name { get; set; }
-        public string Erscheinungsjahr { get; set; }
+        public string? Erscheinungsjahr { get; set; }
         public int SpielerMin { get; set; }
         public int SpielerMax { get; set; }
         public double Rating { get; set; }
