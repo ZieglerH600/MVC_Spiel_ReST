@@ -58,7 +58,7 @@ namespace MVC_Spiel_ReST.Controllers
         //Fügt ein Spiel hinzu und sendet das Ergebnis an den Client
         [Route("/api/InsertGame")]
         [HttpPost]
-        public IActionResult InsertGame([FromBody] string value)
+        public IActionResult InsertGame(string value)
         {
             Spiel spiel = System.Text.Json.JsonSerializer.Deserialize<Spiel>(value);
 
