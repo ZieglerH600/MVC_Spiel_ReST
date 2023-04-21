@@ -69,7 +69,7 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         //Ändert die Daten eines Spiels
-        [Route("/api/UpdateGame")]
+        [Route("/api/UpdateGame/{SIP}")]
         [HttpPut("{id}")]
         public IActionResult UpdateGame(int SIP, [FromBody] string value)
         {
