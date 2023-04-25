@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace MVC_Spiel_ReST.Models
 {
@@ -14,7 +15,7 @@ namespace MVC_Spiel_ReST.Models
         public async Task<bool> DeleteGameByID(int id)
         {
             string SelectStr = $@"Delete Spiel where SIP=@SIP";
-            int affected = await Conn.ExecuteScalarAsync<int>(SelectStr, new { SIP = id });
+            int affected = await Conn.ExecuteAsync(SelectStr, new { SIP = id });
             if (affected > 0) { return true; } else { return false; }
         }
 
@@ -30,12 +31,28 @@ namespace MVC_Spiel_ReST.Models
 
         public Spiel GetGameByID(int id)
         {
-            string SelectStr = $@"Select Spiel.*,Publisher.Bezeichnung AS SpielPublisher
+            string Prüfung = $@"Select Count(*) from Spiel where SIP=@SIP";
+            int anzahl = Conn.QuerySingle<int>(Prüfung, new { SIP = id });
+            if (anzahl == 0)
+            {
+                return new Spiel{ TID = 1,
+                PID = 1,
+                Name = "Nicht Vorhanden",
+                Erscheinungsjahr = "0000",
+                SpielerMin = 1,
+                SpielerMax = 1,
+                Rating = 1,
+                SIP = id};
+            }
+            else
+            {
+                string SelectStr = $@"Select Spiel.*,Publisher.Bezeichnung AS SpielPublisher
                                 ,Typ.Name as SpieleTyp
                                 from Spiel inner join Publisher 
                                 on (Publisher.PID=Spiel.PID) inner Join Typ 
                                 on (Spiel.TID=Typ.TID) where Spiel.SIP=@SIP";
-            return Conn.QuerySingle<Spiel>(SelectStr, new { SIP = id });
+                return Conn.QuerySingle<Spiel>(SelectStr, new { SIP = id });
+            }
         }
 
         public int InsertGame(Spiel Game)
@@ -72,7 +89,8 @@ namespace MVC_Spiel_ReST.Models
 
         public async Task<bool> UpdateGame(Spiel Game)
         {
-            string SelectStr = $@"Update Spiel SET
+          
+                string SelectStr = $@"Update Spiel SET
             TID=@TID,
             PID=@PID,
             Name=@Name,
@@ -81,19 +99,20 @@ namespace MVC_Spiel_ReST.Models
             SpielerMax=@SpielerMax,
             Rating=@Rating
             where SIP=@SIP;";
-            var anonym = new
-            {
-                TID = Game.TID,
-                PID = Game.PID,
-                Name = Game.Name,
-                Erscheinungsjahr  = Game.Erscheinungsjahr,
-                SpielerMin = Game.SpielerMin,
-                SpielerMax = Game.SpielerMax,
-                Rating = Game.Rating,
-                SIP = Game.SIP
-            };
-            int geklappt = await Conn.ExecuteAsync(SelectStr, anonym);
-            if (geklappt > 0) { return true; } else { return false; }
+                var anonym = new
+                {
+                    TID = Game.TID,
+                    PID = Game.PID,
+                    Name = Game.Name,
+                    Erscheinungsjahr = Game.Erscheinungsjahr,
+                    SpielerMin = Game.SpielerMin,
+                    SpielerMax = Game.SpielerMax,
+                    Rating = Game.Rating,
+                    SIP = Game.SIP
+                };
+                return (await Conn.ExecuteAsync(SelectStr, anonym)>0);
+               
+            
         }
         public List<Publisher> GetAllPublisher()
         {

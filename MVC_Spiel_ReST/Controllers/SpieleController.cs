@@ -71,23 +71,23 @@ namespace MVC_Spiel_ReST.Controllers
         //Ändert die Daten eines Spiels
         [Route("/api/UpdateGame/{SIP}")]
         [HttpPut("{id}")]
-        public IActionResult UpdateGame(int SIP, [FromBody] string value)
+        public async Task<IActionResult> UpdateGame(int SIP, [FromBody] string value)
         {
             Spiel spiel = System.Text.Json.JsonSerializer.Deserialize<Spiel>(value);
-            dataAccess.UpdateGame(spiel);
+            bool result=await dataAccess.UpdateGame(spiel);
 
-            return new JsonResult(spiel);
+            return new JsonResult(result);
         }
 
         //Löscht ein Spiel aus der Datenbank vom Client ausgehend       
         [Route("/api/DeleteGame/{SIP}")]
         [HttpDelete("{id}")]
-        public IActionResult DeleteGame(int SIP)
+        public async Task<IActionResult> DeleteGame(int SIP)
         {
-            dataAccess.DeleteGameByID(SIP);
-            bool geklappt;
-            if (SIP > 0) { geklappt= true; }else { geklappt= false; }
-            return new JsonResult(geklappt);
+            bool result = await dataAccess.DeleteGameByID(SIP);
+            
+            
+            return new JsonResult(result);
 
         }
 
