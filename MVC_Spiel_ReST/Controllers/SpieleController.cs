@@ -16,8 +16,8 @@ namespace MVC_Spiel_ReST.Controllers
             dataAccess = new SQLDAL(configuration.GetConnectionString("SQLConnection"));
         }
         //Alle Spiele abrufen als Liste und als JsonResult an den Client geschickt
-        [Route("/api/AllGames")]
-        [HttpGet]
+        
+        [HttpGet("/api/AllGames")]
         public IActionResult AllGames()
         {
             List<Spiel> AlleSpiele = new List<Spiel>();
@@ -25,8 +25,8 @@ namespace MVC_Spiel_ReST.Controllers
 
             return new JsonResult(AlleSpiele);
         }
-        [Route("/api/GetAllPublisher")]
-        [HttpGet]
+       
+        [HttpGet("/api/GetAllPublisher")]
         public IActionResult GetAllPublisher()
         {
             List<Publisher> publishers = new List<Publisher>();
@@ -35,8 +35,8 @@ namespace MVC_Spiel_ReST.Controllers
             return new JsonResult(publishers);
         }
 
-        [Route("/api/GetAllTyp")]
-        [HttpGet]
+        
+        [HttpGet("/api/GetAllTyp")]
         public IActionResult GetAllTyp()
         {
             List<Typ> type = new List<Typ>();
@@ -46,8 +46,8 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         //Sucht das Spiel mithilfe der ID raus und schickt das Ergebnis als JsonResult an den Client
-        [Route("/api/GameByID/{SIP}")]
-        [HttpGet("{SIP}")]
+        
+        [HttpGet("/api/GameByID/{SIP}")]
         public IActionResult GameByID(int SIP)
         {
             Spiel spiel = dataAccess.GetGameByID(SIP);
@@ -56,8 +56,8 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         //Fügt ein Spiel hinzu und sendet das Ergebnis an den Client
-        [Route("/api/InsertGame")]
-        [HttpPost]
+        
+        [HttpPost("/api/InsertGame")]
         public IActionResult InsertGame([FromBody]string value)
         {
             Spiel spiel = System.Text.Json.JsonSerializer.Deserialize<Spiel>(value);
@@ -69,8 +69,8 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         //Ändert die Daten eines Spiels
-        [Route("/api/UpdateGame/{SIP}")]
-        [HttpPut("{id}")]
+        
+        [HttpPut("/api/UpdateGame/{SIP}")]
         public async Task<IActionResult> UpdateGame(int SIP, [FromBody] string value)
         {
             Spiel spiel = System.Text.Json.JsonSerializer.Deserialize<Spiel>(value);
@@ -80,8 +80,8 @@ namespace MVC_Spiel_ReST.Controllers
         }
 
         //Löscht ein Spiel aus der Datenbank vom Client ausgehend       
-        [Route("/api/DeleteGame/{SIP}")]
-        [HttpDelete("{id}")]
+      
+        [HttpDelete("/api/DeleteGame/{SIP}")]
         public async Task<IActionResult> DeleteGame(int SIP)
         {
             bool result = await dataAccess.DeleteGameByID(SIP);
